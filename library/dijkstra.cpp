@@ -43,8 +43,8 @@ int main(){
 	cin>>V>>E>>s;
 	for(int i=0;i<E;i++){
 	  cin>>st>>t>>w;
-		G[st].push_back({t,k});
-		//G[t].push_back({st,k});//有向のときはいれない。
+		G[st].push_back({t,w});
+		//G[t].push_back({st,w});//有向のときはいれない。
 	}
 	dijkstra(s);
 	for(int i=0;i<V;i++){
