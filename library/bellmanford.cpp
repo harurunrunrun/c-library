@@ -29,7 +29,7 @@ bool bell(int start){
   }
   return true;
 }
-
+//d[i]>=max(V)*max(cost)のときINFと出力することに注意
 int main(){
   int E,start,from,to,cost;
   cin>>V>>E>>start;
