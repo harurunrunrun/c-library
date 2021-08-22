@@ -1,5 +1,8 @@
-# c-library
+# c++-library
 競プロ用のライブラリ
+
+
+# C library
 
 ## min_heap
 
