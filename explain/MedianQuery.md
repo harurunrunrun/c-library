@@ -9,7 +9,7 @@
 ```
 MedianQuery<Type> MQ;
 ```
-計算量 $O(1)$
+計算量 $$O(1)$$
 
 <br>
 
