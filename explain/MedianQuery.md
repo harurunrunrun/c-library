@@ -9,14 +9,14 @@
 ```
 MedianQuery<Type> MQ;
 ```
-計算量 $$O(1)$$
+計算量 O(1)
 
 <br>
 
 ```
 MedianQuery<Type> MQ(std::vector<Type> v);
 ```
-計算量 $O(|v|\log(|v|))$
+計算量 O(|v|log(|v|))
 
 <br>
 
@@ -25,9 +25,9 @@ MedianQuery<Type> MQ(std::vector<Type> v);
 ```
 void add(Type x);
 ```
-計算量 $O(\log(n))$
+計算量 O(log(n))
 
-($n$ :今まで追加した要素数)
+(n :今まで追加した要素数)
 
 <br>
 
@@ -36,7 +36,7 @@ void add(Type x);
 ```
 void update(std::vector<Type> v);
 ```
-計算量 $O(|v|\log(n))$
+計算量 O(|v|log(n))
 
 <br>
 
@@ -45,7 +45,7 @@ void update(std::vector<Type> v);
 ```
 double get();
 ```
-計算量 $O(1)$
+計算量 O(1)
 
 <br>
 
@@ -55,8 +55,8 @@ double get();
 void erase(Type x);
 ```
 
-$x$ が存在しない場合は例外が発生します。
+x が存在しない場合は例外が発生します。
 
-計算量 $O(\log(n))$
+計算量 O(log(n))
 
 
