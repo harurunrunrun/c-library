@@ -9,9 +9,9 @@ class segtree{
     void update(int k){
       _d.at(k)=op(_d.at(2*k),_d.at(2*k+1));
     }
-    int ceil_pow2(int n){
+    int ceil_pow2(int y){
       int x=0;
-      while((1U<<x)<(unsigned int)(n)){
+      while((1U<<x)<(unsigned int)(y)){
         x++;
       }
       return x;
@@ -24,7 +24,7 @@ class segtree{
       _size=1<<_log;
       _d=std::vector<Type>(2*_size,e());
       for(int i=0;i<_n;i++){
-        _d.at(_size+1)=v.at(i);
+        _d.at(_size+i)=v.at(i);
       }
       for(int i=_size-1;i>=1;i--){
         update(i);
@@ -64,9 +64,11 @@ class segtree{
       return _d.at(1);
     }
 
-    template<bool (*f(Type))> int max_right(int l)const{
+    template<bool (*f)(Type)>
+    int max_right(int l)const{
       return max_right(l,[](Type x){return f(x);});
     }
+
     template<class F>
     int max_right(int l,F f)const{
       if(l==_n){
@@ -132,37 +134,28 @@ segtree<Type,op,e> seg(std::vector<Type> v)
 型 Type
 二項演算 Type op(Type a,Type b)
 単位元 Type e()
-
 set O(log n)
 void seg.set(int p,Type x)
 a[p] <- x
-
 get O(1)
 Type seg.get(int p)
 a[p] を取得
-
 prod O(lon n)
 Type seg.prod(int l,int r)
 op(a[l], ..., a[r-1]) を取得
-
 all_prod O(1)
 Type seg.all_prod()
 op(a[0],..,a[n-1]) を取得
-
 max_right O(log n)
 int seg.max_right<f>(int l)
 int seg.max_right<F>(int l, F f)
 関数 bool f(Type x)
 segtree上で二分探索
 f(op(a[l],...,a[r-1]))=true となる最大のr
-
-
 min_left O(log n)
 int seg.min_left<f>(int r)
 int seg.min_left<F>(int r,F f)
 関数 bool f(Type x)
 segtree上で二分探索
 f(op(a[l],...,a[r-1]))=true となる最小のl
-
 */
-
