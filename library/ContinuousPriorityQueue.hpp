@@ -30,7 +30,10 @@ class ContinuousPriorityQueue{
     int pop(int l,int r){
       assert(0<=l && l<_vec.size() && 0<r && r<=_vec.size());
       std::pair<int,int> max_p=_seg.prod(l,r);
-      int res=max_p.second;
+      if(max_p==_e()){
+        return -1;
+      }
+      int res=max_p.first;
       _vec[max_p.second].pop();
       if(_vec[max_p.second].empty()){
         _seg.set(max_p.second,_e());
@@ -60,5 +63,17 @@ class ContinuousPriorityQueue{
     }
     bool empty(int index){
       return _vec[index].empty();
+    }
+    bool range_empty(int l,int r){
+      return _seg.prod(l,r)==_e();
+    }
+    void _print(){
+      for(int i=0;i<_vec.size();i++){
+        priority_queue<int> pq=_vec[i];
+        while(!pq.empty()){
+          cerr<<pq.top()<<" ";
+          pq.pop();
+        }cerr<<endl;
+      }
     }
 };
