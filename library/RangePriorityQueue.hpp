@@ -13,7 +13,7 @@ std::pair<int,int> _e(){
   return std::make_pair(-1,-1);
 }
 
-class ContinuousPriorityQueue{
+class RangePriorityQueue{
   private:
     std::vector<std::priority_queue<int>> _vec;
     atcoder::segtree<std::pair<int,int>,_max,_e> _seg;
