@@ -19,7 +19,7 @@ class RangePriorityQueue{
     atcoder::segtree<std::pair<int,int>,_max,_e> _seg;
     // val,index
   public:
-    ContinuousPriorityQueue(int maxsize=200000){
+    RangePriorityQueue(int maxsize=200000){
       _seg=atcoder::segtree<std::pair<int,int>,_max,_e>(maxsize);
       _vec.reserve(maxsize);
     }
