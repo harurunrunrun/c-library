@@ -46,11 +46,11 @@ template <typename T> class MedianQuery{
           _median=x;
         }else if(x<small_max){
           _median=small_max;
-          small.erase(small_max);
+          small.erase(small.find(small_max));
           small.insert(x);
         }else{
           _median=large_min;
-          large.erase(large_min);
+          large.erase(large.find(large_min));
           large.insert(x);
         }
       }
@@ -80,14 +80,16 @@ template <typename T> class MedianQuery{
         if(_median==x){
           --_size;
         }else if(_median>x){
-          assert(small.find(x)!=small.end());
+          auto small_it=small.find(x);
+          assert(small_it!=small.end());
           --_size;
-          small.erase(x);
+          small.erase(small_it);
           small.insert(_median);
         }else{
-          assert(large.find(x)!=large.end());
+          auto large_it=large.find(x);
+          assert(large_it!=large.end());
           --_size;
-          large.erase(x);
+          large.erase(large_it);
           large.insert(_median);
         }
       }else{
@@ -95,17 +97,19 @@ template <typename T> class MedianQuery{
         T large_min=*large.begin();
         assert(x<=small_max || large_min<=x);
         if(x<=small_max){
-          assert(small.find(x)!=small.end());
+          auto small_it=small.find(x);
+          assert(small_it!=small.end());
           --_size;
-          small.erase(x);
+          small.erase(small_it);
           _median=large_min;
-          large.erase(large_min);
+          large.erase(large.find(large_min));
         }else if(x>=large_min){
-          assert(large.find(x)!=large.end());
+          auto large_it=large.find(x);
+          assert(large_it!=large.end());
           --_size;
-          large.erase(x);
+          large.erase(large_it);
           _median=small_max;
-          small.erase(small_max);
+          small.erase(small.find(small_max));
         }
       }
       return;
