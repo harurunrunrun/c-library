@@ -31,7 +31,7 @@ template <typename T> class MedianQuery{
     void add(T x){
       if(_size==0){
         _median=x;
-      }else if(_size&1==1){
+      }else if((_size&1)==1){
         if(_median<x){
           small.insert(_median);
           large.insert(x);
@@ -67,7 +67,7 @@ template <typename T> class MedianQuery{
     
     double get(){
       assert(_size>0);
-      if(_size&1==1){
+      if((_size&1)==1){
         return _median;
       }else{
         return ((double)(*small.rbegin())+(double)(*large.begin()))/2.0;
@@ -76,7 +76,7 @@ template <typename T> class MedianQuery{
 
     void erase(T x){
       assert(_size>0);
-      if(_size&1==1){
+      if((_size&1)==1){
         if(_median==x){
           --_size;
         }else if(_median>x){
