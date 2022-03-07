@@ -20,7 +20,7 @@ class Tree{
     bool is_searched_parent_and_depth=false;
     bool is_init_lca=false;
     // private functions
-    void _parent_and_depth(int v,int par,int dep){
+    void _parent_and_depth(int v,int par,long long dep){
       _parent[v]=par;
       _depth[v]=dep;
       for(Edge e:_Graph[v]){
