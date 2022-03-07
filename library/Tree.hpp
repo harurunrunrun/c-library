@@ -14,18 +14,20 @@ class Tree{
     std::vector<std::vector<Edge>> _Graph;
     // other data
     std::vector<int> _parent;
-    std::vector<long long> _depth;
+    std::vector<int> _depth;
+    std::vector<long long> _distance;
     std::vector<std::vector<long long>> _doubling_parent;
     // flags
-    bool is_searched_parent_and_depth=false;
+    bool is_searched_parent_and_depth_and_distance=false;
     bool is_init_lca=false;
     // private functions
-    void _parent_and_depth(int v,int par,long long dep){
+    void _parent_and_depth_and_distance(int v,int par,int dep,long long cost){
       _parent[v]=par;
       _depth[v]=dep;
+      _distance[v]=cost;
       for(Edge e:_Graph[v]){
         if(e.to!=par){
-          _parent_and_depth(e.to,v,dep+e.cost);
+          _parent_and_depth_and_distance(e.to,v,dep+1,cost+e.cost);
         }
       }
     }
@@ -34,7 +36,7 @@ class Tree{
         return;
       }
       is_init_lca=true;
-      search_parent_and_depth();
+      search_parent_and_depth_and_distance();
       int K=1;
       while((1<<K)<_V){
         K++;
@@ -80,14 +82,15 @@ class Tree{
       _Graph[s].emplace_back(Edge(t,c));
       _Graph[t].emplace_back(Edge(s,c));
     }
-    void search_parent_and_depth(){
-      if(is_searched_parent_and_depth){
+    void search_parent_and_depth_and_distance(){
+      if(is_searched_parent_and_depth_and_distance){
         return;
       }
-      is_searched_parent_and_depth=true;
+      is_searched_parent_and_depth_and_distance=true;
       _parent.resize(_V);
       _depth.resize(_V);
-      _parent_and_depth(_root,-1,0);
+      _distance.resize(_V);
+      _parent_and_depth_and_distance(_root,-1,0,0);
     }
     long long LCA(int u,int v){
       if(!is_init_lca){
@@ -117,7 +120,7 @@ class Tree{
       if(!is_init_lca){
         _LCA_init();
       }
-      return _depth[u]+_depth[v]-2*_depth[LCA(u,v)];
+      return _distance[u]+_distance[v]-2*_distance[LCA(u,v)];
     }
     bool is_on_path(int u,int v,int p){
       if(!is_init_lca){
