@@ -1,6 +1,7 @@
 #include <vector>
 #include <utility>
 #include <algorithm>
+#include <deque>
 class Tree{
   private:
     struct Edge{
@@ -21,6 +22,15 @@ class Tree{
     bool is_searched_parent_and_depth_and_distance=false;
     bool is_init_lca=false;
     // private functions
+    template<class T>
+    bool chmax(T& x,const T& y){
+      if(x<y){
+        x=y;
+        return true;
+      }else{
+        return false;
+      }
+    }
     void _parent_and_depth_and_distance(int v,int par,int dep,long long cost){
       _parent[v]=par;
       _depth[v]=dep;
@@ -116,16 +126,63 @@ class Tree{
       }
       return _doubling_parent[0][u];
     }
-    long long get_distance(int u,int v){
+    inline long long get_distance(int u,int v){
+      if(is_searched_parent_and_depth_and_distance &&(u==_root || v==_root)){
+        return _distance[u]>_distance[v]?_distance[u]:_distance[v];
+      }
       if(!is_init_lca){
         _LCA_init();
       }
       return _distance[u]+_distance[v]-2*_distance[LCA(u,v)];
     }
-    bool is_on_path(int u,int v,int p){
+    inline bool is_on_path(int u,int v,int p){
       if(!is_init_lca){
         _LCA_init();
       }
       return get_distance(u,p)+get_distance(v,p)==get_distance(u,v);
+    }
+    long long calculate_diameter(){
+      long long max1=0;
+      int ind1;
+      if(is_searched_parent_and_depth_and_distance){
+        for(int i=0;i<_V;i++){
+          if(chmax(max1,_distance[i])){
+            ind1=i;
+          }
+        }
+      }else{
+        std::deque<int> dq1;
+        std::vector<long long> dis1(_V,-1);
+        dis1[_root]=0;
+        dq1.push_back(_root);
+        while(!dq1.empty()){
+          int q=dq1.front();dq1.pop_front();
+          for(Edge i:_Graph[q]){
+            if(dis1[i.to]==-1){
+              dis1[i.to]=dis1[q]+i.cost;
+              if(chmax(max1,dis1[i.to])){
+                ind1=i.to;
+              }
+              dq1.push_back(i.to);
+            }
+          }
+        }
+      }
+      long long max2=0;
+      std::deque<int> dq2;
+      std::vector<long long> dis2(_V,-1);
+      dis2[ind1]=0;
+      dq2.push_back(ind1);
+      while(!dq2.empty()){
+        int q=dq2.front();dq2.pop_front();
+        for(Edge i:_Graph[q]){
+          if(dis2[i.to]==-1){
+            dis2[i.to]=dis2[q]+i.cost;
+            max2=std::max(max2,dis2[i.to]);
+            dq2.push_back(i.to);
+          }
+        }
+      }
+      return max2;
     }
 };
