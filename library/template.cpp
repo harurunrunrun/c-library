@@ -13,9 +13,11 @@
 #include <stdio.h>
 #include <math.h>
 #include <assert.h>
+#if __has_include(<atcoder/all>)
 #include <atcoder/all>
-using namespace std;
 using namespace atcoder;
+#endif
+using namespace std;
 using ll=long long;
 
 int main(){
