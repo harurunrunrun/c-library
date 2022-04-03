@@ -19,6 +19,10 @@ using namespace atcoder;
 #endif
 using namespace std;
 using ll=long long;
+#define read(x) cin>>(x)
+#define readll(x) ll (x);cin>>(x);
+#define readS(x) string (x);cin>>(x);
+#define readvll(x,N) vector<ll> (x)((N));for(int i=0;i<(N);i++){cin>>(x)[i];}
 
 int main(){
   
