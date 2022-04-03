@@ -10,6 +10,12 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+/*
+参考元
+https://atcoder.jp/contests/math-and-algorithm/submissions/30584043
+https://qiita.com/nojima/items/57b9d39d7d73362ac883
+*/
+
 #include <stdio.h>
 #define read_size 1000000
 #define write_size 1000000
@@ -54,4 +60,6 @@ struct fastio{
       if(write_buffer-write_data!=0)fwrite(write_data,1,write_buffer-write_data,stdout);
     }
 };
+
+
 
