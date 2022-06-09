@@ -14,6 +14,8 @@ class PalindromicTree{
     };
     std::string S;
     std::vector<Node> tree;
+    std::vector<long long> count_num;
+    std::vector<long long> accum;
     long long last=1;
     long long mx=1;
     bool _add(long long pos){
@@ -55,24 +57,30 @@ class PalindromicTree{
     PalindromicTree(){}
     PalindromicTree(const string& str):S(str){
       tree.resize(S.size()+2);
+      count_num.resize(S.size());
+      accum.resize(S.size()+1);
       tree[0].length=-1;
       tree[0].index=0;
       tree[1].length=0;
       tree[1].index=0;
       for(int i=0;i<(int)S.size();i++){
         _add(S[i]);
+        count_num[i]=tree[mx].num;
+        accum[i+1]=accum[i]+count_num[i];
       }
     }
+    // Sに含まれる回文の個数
+    // 1文字を除く場合は|S|を引けばよい
     long long count_all(){
-      long long res=0;
-      for(int i=0;i<(int)S.size();i++){
-        res+=tree[mx].num;
-      }
-      return res;
+      return accum[S.size()];
     }
-    long long count_all_ignore_1(){
-      return count_all()-S.size();
+    // S[pos] が最後尾となる回文の個数
+    long long get(int pos){
+      return count_num[pos];
     }
-    
-
+    // S[0~pos] が最後尾となる回文の個数
+    long long get_accum(int pos){
+      return accum[pos+1];
+    }
 };
+
