@@ -121,3 +121,26 @@ std::vector<long long> segment_sieve(long long a,long long b){
   }
   return res;
 }
+
+inline long long xorsum(long long x,long long y){
+  auto f=[](long long n){
+    if(n&1){
+      if(((n+1)/2)&1){
+        return 1LL;
+      }else{
+        return 0LL;
+      }
+    }else{
+      if((n/2)&1){
+        return 1LL^n;
+      }else{
+        return n;
+      }
+    }
+  };
+  if(x){
+    return f(x-1)^f(y);
+  }else{
+    return f(y);
+  }
+}
