@@ -12,6 +12,8 @@
 #include <utility>
 #include <stack>
 #include <random>
+#include <complex>
+#include <functional>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
