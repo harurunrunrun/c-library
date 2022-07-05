@@ -686,3 +686,19 @@ Circle smallest_circle(Points P){
   return c;
 }
 
+// https://atcoder.jp/contests/typical90/tasks/typical90_ao
+// 多角形の周上の格子点の総数を求める
+long long sum_of_lattice_points_on_edge(const Polygon& Q){
+  long long res=0;
+  unsigned size=Q.size();
+  for(unsigned i=0;i<size;i++){
+    res+=__gcd((long long)abs(Q[i].real()-Q[(i+1)%size].real()),(long long)abs(Q[i].imag()-Q[(i+1)%size].imag()));
+  }
+  return res;
+}
+
+// 多角形の周上及び内部の格子点の総和
+long long sum_of_lattice_points(const Polygon& Q){
+  long long on_edge=sum_of_lattice_points_on_edge(Q);
+  return round(area(Q)+1.0-on_edge/2.0)+on_edge;
+}
