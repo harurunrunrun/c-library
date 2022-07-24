@@ -34,6 +34,7 @@ using ll=long long;
 #define is_in(x,y) (0<=(x) && (x)<H && 0<=(y) && (y)<W)
 #define yn {cout<<"Yes"<<endl;}else{cout<<"No"<<endl;}
 #define double_out(x) fixed << setprecision(x)
+template<class T> inline void erase_duplicate(vector<T>& A){sort(A.begin(),A.end());A.erase(unique(A.begin(),A.end()),A.end());}
 inline ll powll(ll x,ll n){ll r=1;while(n>0){if(n&1){r*=x;};x*=x;n>>=1;};return r;}
 
 int main(){
