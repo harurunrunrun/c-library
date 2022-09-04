@@ -1,0 +1,12 @@
+#! /bin/sh
+if [ $# -eq 1 ]; then
+  filename=$1
+  curl https://raw.githubusercontent.com/harurunrunrun/c-library/main/library/template.cpp > $filename 2> /dev/null
+  exitcode=$?
+  if [ $exitcode -ne 0 ]; then
+    echo something wrong! $exitcode >&2
+  fi
+else
+  echo requirements is not one. >&2
+  echo please give me only output filename. >&2
+fi
