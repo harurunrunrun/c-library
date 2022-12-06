@@ -29,7 +29,8 @@ using cpp_int=boost::multiprecision::cpp_int;
 #endif
 #if __has_include(<boost/multiprecision/cpp_dec_float.hpp>)
 #include <boost/multiprecision/cpp_dec_float.hpp>
-using cpp_float=boost::multiprecision::number<boost::multiprecision::cpp_dec_float<1024>>;
+template<unsigned size>using cpp_float=boost::multiprecision::number<boost::multiprecision::cpp_dec_float<size>>;
+template<unsigned size>using cpp_double=boost::multiprecision::number<boost::multiprecision::cpp_dec_float<size,long long>>;
 #endif
 using namespace std;
 using ll=long long;
