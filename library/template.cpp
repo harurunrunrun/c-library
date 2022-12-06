@@ -23,6 +23,14 @@
 #include <atcoder/all>
 using namespace atcoder;
 #endif
+#if __has_include(<boost/multiprecision/cpp_int.hpp>)
+#include <boost/multiprecision/cpp_int.hpp>
+using cpp_int=boost::multiprecision::cpp_int;
+#endif
+#if __has_include(<boost/multiprecision/cpp_dec_float.hpp>)
+#include <boost/multiprecision/cpp_dec_float.hpp>
+using cpp_float=boost::multiprecision::number<boost::multiprecision::cpp_dec_float<1024>>;
+#endif
 using namespace std;
 using ll=long long;
 #define read(x) cin>>(x);
@@ -37,7 +45,7 @@ using ll=long long;
 template<class T> inline void erase_duplicate(vector<T>& A){sort(A.begin(),A.end());A.erase(unique(A.begin(),A.end()),A.end());}
 inline ll powll(ll x,ll n){ll r=1;while(n>0){if(n&1){r*=x;};x*=x;n>>=1;};return r;}
 
+
 int main(){
   
 }
-
