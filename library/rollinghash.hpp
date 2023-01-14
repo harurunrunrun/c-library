@@ -8,15 +8,13 @@ ref: https://ei1333.github.io/library/string/rolling-hash.hpp, https://qiita.com
 #include <string>
 #include <algorithm>
 
-namespace Rollinghash{
-
-struct Rhash{
+struct Rollinghash{
   private:
     const unsigned long long mod=(1ull<<61ull)-1;
     std::vector<unsigned long long> power;
     const unsigned long long base=[&](){
       std::mt19937_64 mt(std::chrono::steady_clock::now().time_since_epoch().count());
-      std::uniform_int_distribution<unsigned long long> rand(1,Rhash::mod-1);
+      std::uniform_int_distribution<unsigned long long> rand(1,Rollinghash::mod-1);
       return rand(mt);
     }();
     inline unsigned long long safe_mod(unsigned long long x){
@@ -50,7 +48,7 @@ struct Rhash{
       }
     }
   public:
-    explicit Rhash():power{1ull}{}
+    explicit Rollinghash():power{1ull}{}
     template<class T> std::vector<unsigned long long> build(const std::vector<T>& s){
       unsigned int sz=s.size();
       std::vector<unsigned long long> hash(sz+1);
@@ -70,25 +68,21 @@ struct Rhash{
       expand(h2len);
       return add(mul(h1,power[h2len]),h2);
     }
-};
-
-bool same(Rhash& R, std::vector<unsigned long long>& hash1, int l1, int r1, std::vector<unsigned long long>& hash2, int l2, int r2){
-  return R.query(hash1,l1,r1)==R.query(hash2,l2,r2); 
-}
-
-int lcp(Rhash& R, std::vector<unsigned long long>& hash1, int l1, int r1, std::vector<unsigned long long>& hash2, int l2, int r2){
-  int len=std::min(r1-l1,r2-l2);
-  int low=0;
-  int high=len+1;
-  while(high-low>1){
-    int mid=(low+high)/2;
-    if(same(R,hash1,l1,l1+mid,hash2,l2,l2+mid)){
-      low=mid;
-    }else{
-      high=mid;
+    bool same(std::vector<unsigned long long>& hash1, int l1, int r1, std::vector<unsigned long long>& hash2, int l2, int r2){
+      return query(hash1,l1,r1)==query(hash2,l2,r2); 
     }
-  }
-  return low;
-}
-
-}
+    int lcp(std::vector<unsigned long long>& hash1, int l1, int r1, std::vector<unsigned long long>& hash2, int l2, int r2){
+      int len=std::min(r1-l1,r2-l2);
+      int low=0;
+      int high=len+1;
+      while(high-low>1){
+        int mid=(low+high)/2;
+        if(same(hash1,l1,l1+mid,hash2,l2,l2+mid)){
+          low=mid;
+        }else{
+          high=mid;
+        }
+      }
+      return low;
+    }
+};
