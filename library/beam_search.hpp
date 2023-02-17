@@ -14,7 +14,7 @@ class Template_State{
     const ScoreType INF=std::numeric_limits<ScoreType>::max();
     int game_score=0;/*ゲーム上で実際に得た得点*/
     ScoreType evaluated_score=0;/*盤面の評価点*/
-
+    int first_action=-1;
     Template_State(){}
     inline bool isDone(){
       /*
@@ -46,6 +46,9 @@ class Template_State{
       現在のスコアを評価する
       */
       evaluated_score=game_score;
+    }
+    bool operator<(const Template_State& state){
+      return evaluated_score<state.evaluated_score;
     }
 };
 
