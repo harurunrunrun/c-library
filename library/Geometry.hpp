@@ -711,7 +711,7 @@ bool on_segment(Segment seg, Point x){
   return ccw(seg.a, seg.b, x)==0;
 }
 
-int contains(Polygon& Q, Point p0){
+int contains_logN(const Polygon& Q,const Point& p0){
   int N=Q.size();
   int left=1, right=N-1;
   Point q0=Q[0];
