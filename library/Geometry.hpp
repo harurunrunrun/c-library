@@ -156,6 +156,10 @@ Real cross(const Point &a, const Point &b) {
   return real(a) * imag(b) - imag(a) * real(b);
 }
 
+Real cross3(const Point &a, const Point& b, const Point& c){
+  return cross(b-a, c-a);
+}
+
 // 内積
 Real dot(const Point &a, const Point &b) {
   return real(a) * real(b) + imag(a) * imag(b);
@@ -702,3 +706,34 @@ long long sum_of_lattice_points(const Polygon& Q){
   long long on_edge=sum_of_lattice_points_on_edge(Q);
   return round(area(Q)+1.0-on_edge/2.0)+on_edge;
 }
+
+bool on_segment(Segment seg, Point x){
+  return ccw(seg.a, seg.b, x)==0;
+}
+
+int contains(Polygon& Q, Point p0){
+  int N=Q.size();
+  int left=1, right=N-1;
+  Point q0=Q[0];
+  while(left+1<right){
+    int mid=(left+right)/2;
+    if(cross3(q0,p0,Q[mid])<=0){
+      left=mid;
+    }else{
+      right=mid;
+    }
+  }
+  Point qi=Q[left],qj=Q[left+1];
+  int v0=cross3(q0,qi,qj);
+  int v1=cross3(q0,p0,qj);
+  int v2=cross3(q0,qi,p0);
+  if(on_segment(Segment(qi,qj),p0)||(left+1==N && on_segment(Segment(qj,q0),p0))||(left==1 && on_segment(Segment(q0,qi),p0))){
+    return ON;
+  }
+  if(v0<0){
+    v1=-v1;
+    v2=-v2;
+  }
+  return (0<=v1 && 0<=v2 && v1+v2<=v0)?IN:OUT;
+}
+
