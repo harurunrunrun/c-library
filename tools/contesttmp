@@ -1,0 +1,43 @@
+#! /bin/bash
+pyurl="https://raw.githubusercontent.com/harurunrunrun/python-my-library/main/library/Input3.py"
+cppurl="https://raw.githubusercontent.com/harurunrunrun/c-library/main/library/template.cpp"
+if [ ! -f ./A.py ]; then
+  curl  $pyurl > A.py 2> /dev/null
+else
+  echo A.py is exist 1>&2
+fi
+if [ ! -f ./B.py ]; then
+  curl $pyurl > B.py 2> /dev/null
+else
+  echo B.py is exist 1>&2
+fi
+if [ ! -f ./C.py ]; then
+  curl $pyurl > C.py 2> /dev/null
+else
+  echo C.py is exist 1>&2
+fi
+if [ ! -f ./D.py ]; then
+  curl $pyurl > D.py 2> /dev/null
+else
+  echo D.py is exist 1>&2
+fi
+if [ ! -f ./E.cpp ]; then
+  curl $cppurl > E.cpp 2> /dev/null
+else
+  echo E.cpp is exist 1>&2
+fi
+if [ ! -f ./F.cpp ]; then
+  curl $cppurl > F.cpp 2> /dev/null
+else
+  echo F.cpp is exist 1>&2
+fi
+if [ ! -f ./G.cpp ]; then
+  curl $cppurl > G.cpp 2> /dev/null
+else
+  echo G.cpp is exist 1>&2
+fi
+if [ ! -f ./H.cpp ]; then
+  curl $cppurl > H.cpp 2> /dev/null
+else
+  echo H.cpp is exist 1>&2
+fi
