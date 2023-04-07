@@ -41,3 +41,18 @@ if [ ! -f ./H.cpp ]; then
 else
   echo H.cpp is exist 1>&2
 fi
+if [ ! -f ./input.txt ]; then
+  touch input.txt
+else
+  echo input.txt is exist 1>&2
+fi
+if [ ! -f ./output.txt ]; then
+  touch output.txt
+else
+  echo output.txt is exist 1>&2
+fi
+if [ ! -f ./error.txt ]; then
+  touch error.txt
+else
+  echo error.txt is exist 1>&2
+fi
