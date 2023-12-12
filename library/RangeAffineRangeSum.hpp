@@ -1,3 +1,7 @@
+/*
+一次関数を遅延セグ木に乗せる
+*/
+
 using mint=atcoder::modint998244353;
 
 struct S{
