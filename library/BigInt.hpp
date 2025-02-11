@@ -172,6 +172,10 @@ public:
         return mpz_get_si(value);
     }
 
+    operator double() const {
+        return mpz_get_d(value);
+    }
+
     std::string toString(int base = 10) const {
         char *c_str = mpz_get_str(nullptr, base, value);
         std::string str(c_str);
