@@ -1,4 +1,24 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <deque>
+#include <queue>
+#include <string>
+#include <iomanip>
+#include <set>
+#include <unordered_set>
+#include <map>
+#include <unordered_map>
+#include <utility>
+#include <stack>
+#include <random>
+#include <complex>
+#include <functional>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <math.h>
+#include <assert.h>
 #if __has_include(<atcoder/all>)
 #include <atcoder/all>
 using namespace atcoder;
