@@ -372,7 +372,7 @@ bool is_convex(const Polygon &p) {
 // http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_A
 // 凸包
 // 頂点が全て整数のときはEPS=0にしないとバグる
-Polygon convex_hull(Polygon &p) {
+Polygon convex_hull(Polygon p) {
   int n = (int) p.size(), k = 0;
   if(n <= 2) return p;
   sort(p.begin(), p.end());
