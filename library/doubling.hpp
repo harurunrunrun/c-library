@@ -3,8 +3,8 @@
 struct Doubling{
     int _log=1;
     std::vector<std::vector<int>> doubling;
-    Doubling(std::vector<int> next, int max_size){
-        while((1<<(_log))<=max_size){
+    Doubling(std::vector<int> next, long long max_size){
+        while((1LL<<(_log))<=max_size){
             _log++;
         }
         doubling=std::vector<std::vector<int>>(_log,std::vector<int>(next.size()));
@@ -17,8 +17,8 @@ struct Doubling{
             }
         }
     }
-    int query(int now, int c){
-        for(int k=0;c>0;k++){
+    int query(int now, long long c){
+        for(long long k=0;c>0;k++){
             if(c&1){
                 now=doubling[k][now];
             }
